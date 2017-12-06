@@ -26,19 +26,22 @@ def aks(p):
 '''
 
 
-def expand_x_1(p):
+def expand_x_1(num):
     ex = [1]
-    for i in range(p):
-        ex.append(ex[-1] * -(p-i) / (i+1))
-    return ex[::-1]
+    if num >= 2:
+        for i in range(num):
+            ex.append(ex[-1] * -(num - i) / (i + 1))
+        return ex[::-1]
  
-def aks_test(p):
-    if p < 2: return False
-    ex = expand_x_1(p)
+def aks_test(num):
+    ex = expand_x_1(num)
     ex[0] += 1
-    return not any(mult % p for mult in ex[0:-1])
+    return not any(mult % num for mult in ex[0:-1])
  
- 
+
+
+
+'''
 print('# p: (x-1)^p for small p')
 for p in range(12):
     print('%3i: %s' % (p, ' '.join('%+i%s' % (e, ('x^%i' % n) if n else '')
